@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Shield, Globe, ExternalLink, ArrowLeft, Lock, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
+const BUSINESS_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "http://localhost:3001";
+
 const VENTURES: Record<string, {
   name: string;
   description: string;
@@ -17,7 +19,7 @@ const VENTURES: Record<string, {
   tixsync: {
     name: "TIXSYNC SOLUTIONS",
     description: "Enterprise-grade cybersecurity, web development, and cloud infrastructure.",
-    url: "http://localhost:3001",
+    url: BUSINESS_URL,
     icon: Shield,
     accent: "text-brand-400",
     accentBg: "bg-brand-500/10",
@@ -26,7 +28,7 @@ const VENTURES: Record<string, {
   media: {
     name: "TIXSYNC Media",
     description: "Professional photography, videography, and visual storytelling.",
-    url: "http://localhost:3001",
+    url: BUSINESS_URL,
     icon: Globe,
     accent: "text-emerald-400",
     accentBg: "bg-emerald-500/10",
@@ -43,6 +45,7 @@ export default function VentureBridge({ slug }: { slug: string }) {
     if (!venture) return;
     if (countdown <= 0) {
       setAllowed(true);
+      window.open(venture.url, "_blank", "noopener,noreferrer");
       return;
     }
     const timer = setTimeout(() => setCountdown(c => c - 1), 1000);
