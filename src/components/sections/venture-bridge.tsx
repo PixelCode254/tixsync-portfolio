@@ -45,7 +45,7 @@ export default function VentureBridge({ slug }: { slug: string }) {
     if (!venture) return;
     if (countdown <= 0) {
       setAllowed(true);
-      window.open(venture.url, "_blank", "noopener,noreferrer");
+      window.location.href = venture.url;
       return;
     }
     const timer = setTimeout(() => setCountdown(c => c - 1), 1000);
@@ -54,7 +54,7 @@ export default function VentureBridge({ slug }: { slug: string }) {
 
   const handleProceed = () => {
     if (venture) {
-      window.open(venture.url, "_blank", "noopener,noreferrer");
+      window.location.href = venture.url;
     }
   };
 
