@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export function MouseGlow() {
   useEffect(() => {
-    const cards = document.querySelectorAll(".card-glow");
+    const cards = document.querySelectorAll<HTMLElement>(".card-glow");
     const handleMouseMove = (e: MouseEvent) => {
       cards.forEach((card) => {
         const rect = card.getBoundingClientRect();
