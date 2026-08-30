@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
         html: buildAdminNotificationHtml(
           name.trim(),
           email.trim().toLowerCase(),
-          subject,
+          subject ?? null,
           message.trim()
         ),
       });
