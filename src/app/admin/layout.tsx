@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderOpen, MessageSquare, LogOut } from "lucide-react";
+import { LayoutDashboard, FolderOpen, MessageSquare, LogOut, Settings } from "lucide-react";
 import { signOut } from "next-auth/react";
 import { cn } from "@/lib/utils";
 
@@ -21,6 +21,11 @@ const sidebarLinks = [
     label: "Messages",
     href: "/admin/messages",
     icon: MessageSquare,
+  },
+  {
+    label: "Settings",
+    href: "/admin/settings",
+    icon: Settings,
   },
 ];
 
