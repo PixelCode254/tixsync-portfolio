@@ -7,7 +7,7 @@ import { NextRequest, NextResponse } from "next/server";
 // The client calls: /api/venture/[...path]
 // This server routes to: BUSINESS_API_URL/api/[...path]
 
-const BUSINESS_API_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "http://localhost:3001";
+const BUSINESS_API_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "https://tixsync-business-pixelcode254.vercel.app";
 const BUSINESS_API_KEY = process.env.NEXT_PUBLIC_BUSINESS_API_KEY || "";
 
 export async function GET(

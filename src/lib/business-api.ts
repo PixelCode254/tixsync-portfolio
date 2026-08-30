@@ -7,7 +7,7 @@
 //   const { services } = await businessApi.get("/services");
 //   const { projects } = await businessApi.get("/projects?featured=true");
 
-const BUSINESS_API_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "http://localhost:3001";
+const BUSINESS_API_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "https://tixsync-business-pixelcode254.vercel.app";
 const BUSINESS_API_KEY = process.env.NEXT_PUBLIC_BUSINESS_API_KEY || "";
 
 // ─── Types ─────────────────────────────────────────────────────

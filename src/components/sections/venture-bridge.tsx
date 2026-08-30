@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Shield, Globe, ExternalLink, ArrowLeft, Lock, AlertTriangle } from "lucide-react";
 import Link from "next/link";
 
-const BUSINESS_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "http://localhost:3001";
+const BUSINESS_URL = process.env.NEXT_PUBLIC_BUSINESS_API_URL || "https://tixsync-business-pixelcode254.vercel.app";
 
 const VENTURES: Record<string, {
   name: string;
