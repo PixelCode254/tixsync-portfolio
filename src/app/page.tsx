@@ -6,6 +6,7 @@ import { FeaturedVentures } from "@/components/sections/featured-ventures";
 import { PortfolioGrid } from "@/components/sections/portfolio-grid";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
+import { Footer } from "@/components/sections/footer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
       <PortfolioGrid />
       <Testimonials />
       <Contact />
+      <Footer />
     </>
   );
 }

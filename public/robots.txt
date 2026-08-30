@@ -4,4 +4,4 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /ventures/
 
-Sitemap: https://corneliusmaina.dev/sitemap.xml
+Sitemap: https://tixsync.com/sitemap.xml

@@ -64,13 +64,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "@type": "Person",
           name: "Cornelius Maina Nyaga",
           jobTitle: "Full-Stack Developer & Security Engineer",
-          url: "https://corneliusmaina.dev",
+    url: "https://tixsync.com",
           email: "tixsyncsolutions@gmail.com",
           telephone: "+254704440164",
           address: { "@type": "PostalAddress", addressLocality: "Nairobi", addressCountry: "KE" },
-          sameAs: ["https://github.com", "https://linkedin.com", "https://twitter.com"],
+          sameAs: ["https://github.com/PixelCode254", "https://linkedin.com/in/corneliusmaina", "https://twitter.com/corneliusmaina"],
           knowsAbout: ["Full-Stack Development", "Cybersecurity", "Penetration Testing", "Security Architecture", "Next.js", "TypeScript", "PostgreSQL"],
-          worksFor: { "@type": "Organization", name: "TIXSYNC SOLUTIONS", url: "http://localhost:3001" },
+          worksFor: { "@type": "Organization", name: "TIXSYNC SOLUTIONS", url: process.env.NEXT_PUBLIC_BUSINESS_API_URL || "https://tixsyncsolutions.com" },
         })}} />
       </head>
       <body className="min-h-screen bg-obsidian-950">

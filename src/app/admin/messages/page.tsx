@@ -88,6 +88,41 @@ export default function AdminMessages() {
     }
   };
 
+  const handleArchive = async () => {
+    if (!selected) return;
+    try {
+      const res = await fetch("/api/contact/archive", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messageId: selected.id }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setMessages((prev) => prev.filter((m) => m.id !== selected.id));
+      setSelected(null);
+    } catch {
+      // silently fail for now
+    }
+  };
+
+  const handleMarkAsRead = async (msg: Message) => {
+    if (msg.read) return;
+    try {
+      await fetch("/api/contact/read", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messageId: msg.id }),
+      });
+      setMessages((prev) =>
+        prev.map((m) => (m.id === msg.id ? { ...m, read: true } : m))
+      );
+      if (selected?.id === msg.id) {
+        setSelected((prev) => (prev ? { ...prev, read: true } : prev));
+      }
+    } catch {
+      // silently fail
+    }
+  };
+
   return (
     <div>
       <div className="mb-8">
@@ -114,6 +149,7 @@ export default function AdminMessages() {
               <button
                 key={msg.id}
                 onClick={() => {
+                  handleMarkAsRead(msg);
                   setSelected(msg);
                   setReplyText("");
                   setReplyStatus("idle");
@@ -194,7 +230,7 @@ export default function AdminMessages() {
                   <Mail className="h-4 w-4" />
                   Reply via Email
                 </a>
-                <button className="btn-outline text-sm">
+                <button onClick={handleArchive} className="btn-outline text-sm">
                   <Archive className="h-4 w-4" />
                   Archive
                 </button>

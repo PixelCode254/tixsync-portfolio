@@ -20,9 +20,9 @@ export function Footer() {
 
           <div className="flex items-center gap-3">
             {[
-              { icon: Github, href: "https://github.com", label: "GitHub" },
-              { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-              { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+              { icon: Github, href: "https://github.com/PixelCode254", label: "GitHub" },
+              { icon: Linkedin, href: "https://linkedin.com/in/corneliusmaina", label: "LinkedIn" },
+              { icon: Twitter, href: "https://twitter.com/corneliusmaina", label: "Twitter" },
               { icon: MessageCircle, href: "https://wa.me/254704440164", label: "WhatsApp" },
               { icon: Mail, href: "mailto:tixsyncsolutions@gmail.com", label: "Email" },
             ].map(({ icon: Icon, href, label }) => (

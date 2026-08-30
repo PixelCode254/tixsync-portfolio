@@ -191,7 +191,7 @@ export function buildReplyHtml(
 
         <div style="text-align: center;">
           <a href="https://wa.me/254704440164" class="whatsapp">WhatsApp Me</a>
-          <a href="https://tixsyncsolutions.com/#contact" class="cta">Visit Portfolio</a>
+          <a href="https://tixsync.com/#contact" class="cta">Visit Portfolio</a>
         </div>
 
         <div class="quoted-section">
@@ -247,7 +247,7 @@ export function buildAdminNotificationHtml(
         <div class="field-label">Message</div>
         <div class="message-box">${message}</div>
         <div class="footer">
-          Reply to this email or visit the <a href="http://localhost:3000/admin/messages" style="color: #59a0ff;">admin dashboard</a>.
+          Reply to this email or visit the <a href="/admin/messages" style="color: #59a0ff;">admin dashboard</a>.
         </div>
       </div>
     </body>

@@ -15,7 +15,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     Promise.all([
-      fetch("/api/projects").then((r) => r.json()),
+      fetch("/api/projects?all=true").then((r) => r.json()),
       fetch("/api/contact").then((r) => r.json()),
     ]).then(([projectsData, messagesData]) => {
       setStats({
