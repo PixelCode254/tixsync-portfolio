@@ -13,6 +13,15 @@ const transporter = nodemailer.createTransport({
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 interface SendEmailOptions {
   to: string;
   subject: string;
@@ -86,12 +95,12 @@ export function buildAutoReplyHtml(name: string) {
           </div>
         </div>
 
-        <div class="title">Thank You, ${name}!</div>
+        <div class="title">Thank You, ${escapeHtml(name)}!</div>
 
         <div class="divider"></div>
 
         <div class="message">
-          <p>Hi <span class="highlight">${name}</span>,</p>
+          <p>Hi <span class="highlight">${escapeHtml(name)}</span>,</p>
           <p>
             I've received your message and wanted to let you know that it has
             been successfully delivered. I review every inquiry personally and
@@ -131,7 +140,7 @@ export function buildReplyHtml(
 ) {
   const quotedLines = clientMessage
     .split("\n")
-    .map((l) => `&gt; ${l}`)
+    .map((l) => `&gt; ${escapeHtml(l)}`)
     .join("<br>");
 
   return `
@@ -178,10 +187,10 @@ export function buildReplyHtml(
         <div class="divider"></div>
 
         <div class="reply-body">
-          <p>Hi <span class="highlight">${clientName}</span>,</p>
+          <p>Hi <span class="highlight">${escapeHtml(clientName)}</span>,</p>
           ${replyMessage
             .split("\n")
-            .map((line) => `<p>${line}</p>`)
+            .map((line) => `<p>${escapeHtml(line)}</p>`)
             .join("")}
           <p style="margin-top: 16px;">
             If you have any further questions, feel free to reply to this email
@@ -195,7 +204,7 @@ export function buildReplyHtml(
         </div>
 
         <div class="quoted-section">
-          <div class="quoted-label">Your original message${clientSubject ? ` — ${clientSubject}` : ""}</div>
+          <div class="quoted-label">Your original message${clientSubject ? ` — ${escapeHtml(clientSubject)}` : ""}</div>
           <div class="quoted-text">${quotedLines}</div>
         </div>
 
@@ -241,11 +250,11 @@ export function buildAdminNotificationHtml(
         <div class="title">You have a new inquiry</div>
         <div class="divider"></div>
         <div class="field-label">From</div>
-        <div class="field-value">${name} &lt;${email}&gt;</div>
+        <div class="field-value">${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</div>
         <div class="field-label">Subject</div>
-        <div class="field-value">${subject || "(No subject)"}</div>
+        <div class="field-value">${escapeHtml(subject || "(No subject)")}</div>
         <div class="field-label">Message</div>
-        <div class="message-box">${message}</div>
+        <div class="message-box">${escapeHtml(message)}</div>
         <div class="footer">
           Reply to this email or visit the <a href="/admin/messages" style="color: #59a0ff;">admin dashboard</a>.
         </div>

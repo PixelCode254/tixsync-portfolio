@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Download, Mail, Phone, MapPin, Github, Linkedin } from "lucide-react";
+import { PrintButton } from "./print-button";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -15,9 +16,7 @@ export default function ResumePage() {
             <h1 className="text-3xl font-bold text-white mb-2">Cornelius Maina Nyaga</h1>
             <p className="text-lg text-cyber-400">Full-Stack Developer & Security Engineer</p>
           </div>
-          <a href="/api/resume/download" className="flex items-center gap-2 px-4 py-2 bg-cyber-500 text-white rounded-lg text-sm font-medium hover:bg-cyber-600 transition-colors">
-            <Download className="h-4 w-4" /> Download PDF
-          </a>
+          <PrintButton />
         </div>
 
         <div className="flex flex-wrap gap-4 mb-8 text-sm text-obsidian-400">

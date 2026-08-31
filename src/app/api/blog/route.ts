@@ -7,18 +7,25 @@ function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const { searchParams } = new URL(request.url);
+    const all = searchParams.get("all");
+    
+    const where = all === "true" ? {} : { published: true };
+    
     const posts = await prisma.blogPost.findMany({
-      where: { published: true },
+      where,
       orderBy: { createdAt: "desc" },
-      take: 10,
+      take: 50,
       select: {
         id: true,
         title: true,
         slug: true,
         excerpt: true,
+        content: true,
         coverImage: true,
+        published: true,
         createdAt: true,
       },
     });

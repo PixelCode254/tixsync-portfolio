@@ -43,8 +43,10 @@ export async function GET(request: NextRequest) {
 
     const where: Record<string, unknown> = {};
 
-    // Admin "all" mode shows everything including drafts
-    if (all !== "true") {
+    if (all === "true") {
+      const session = await getServerSession(authOptions);
+      if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    } else {
       where.published = true;
     }
 

@@ -20,7 +20,7 @@ export default function AdminBlogPage() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    fetch("/api/blog").then(r => r.json()).then(d => {
+    fetch("/api/blog?all=true").then(r => r.json()).then(d => {
       setPosts(d.posts || []);
       setLoading(false);
     }).catch(() => setLoading(false));
