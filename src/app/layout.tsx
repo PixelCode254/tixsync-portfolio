@@ -3,6 +3,7 @@ import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/ui/navbar";
 import { MouseGlow } from "@/components/ui/mouse-glow";
 import { Analytics } from "@/components/ui/analytics";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 import "./globals.css";
 
 const inter = Inter({
@@ -24,6 +25,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://tixsync.com"),
   title: {
     default: "Cornelius Maina Nyaga | Full-Stack Developer & Security Engineer",
     template: "%s | Cornelius Maina Nyaga",
@@ -77,6 +79,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="grid-bg" />
         <MouseGlow />
         <Analytics />
+        <CookieConsent />
         <Navbar />
         <main>{children}</main>
       </body>
