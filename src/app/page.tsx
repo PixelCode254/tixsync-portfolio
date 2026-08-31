@@ -7,6 +7,7 @@ import { PortfolioGrid } from "@/components/sections/portfolio-grid";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Contact } from "@/components/sections/contact";
 import { Footer } from "@/components/sections/footer";
+import { Chatbot } from "@/components/ui/chatbot";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Testimonials />
       <Contact />
       <Footer />
+      <Chatbot />
     </>
   );
 }
