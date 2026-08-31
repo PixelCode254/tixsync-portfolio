@@ -1,6 +1,14 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+function sanitizeHtml(html: string): string {
+  return html
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, "")
+    .replace(/on\w+="[^"]*"/gi, "")
+    .replace(/on\w+='[^']*'/gi, "")
+    .replace(/javascript:/gi, "");
+}
+
 interface BlogPost {
   id: string;
   title: string;
@@ -63,7 +71,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
         <div
           className="prose prose-invert prose-sm max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
         />
       </article>
     </div>

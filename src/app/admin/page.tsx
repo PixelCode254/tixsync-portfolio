@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FolderOpen, MessageSquare, Users, TrendingUp } from "lucide-react";
+import { FolderOpen, MessageSquare, Users, TrendingUp, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 type Stats = {
@@ -51,6 +51,14 @@ export default function AdminDashboard() {
       color: "text-amber-400",
       bg: "bg-amber-500/10",
     },
+    {
+      label: "Blog Posts",
+      value: "—",
+      icon: BookOpen,
+      href: "/admin/blog",
+      color: "text-purple-400",
+      bg: "bg-purple-500/10",
+    },
   ];
 
   return (
@@ -62,7 +70,7 @@ export default function AdminDashboard() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         {cards.map((card) => (
           <Link
             key={card.label}
@@ -91,6 +99,10 @@ export default function AdminDashboard() {
           <Link href="/admin/messages" className="btn-outline text-sm">
             <MessageSquare className="h-4 w-4" />
             View Messages
+          </Link>
+          <Link href="/admin/blog" className="btn-primary text-sm">
+            <BookOpen className="h-4 w-4" />
+            Manage Blog
           </Link>
           <Link href="/" className="btn-outline text-sm">
             View Live Site
