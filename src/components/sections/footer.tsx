@@ -14,8 +14,12 @@ export function Footer() {
               <span className="text-sm font-semibold text-white">Cornelius Maina Nyaga</span>
             </div>
             <p className="text-xs text-obsidian-600">
-              &copy; {new Date().getFullYear()} Full-Stack Developer & Security Engineer. All rights reserved.
+              &copy; 2026 Full-Stack Developer & Security Engineer. All rights reserved.
             </p>
+            <div className="flex gap-3 mt-2">
+              <Link href="/privacy" className="text-xs text-obsidian-600 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-xs text-obsidian-600 hover:text-white transition-colors">Terms of Service</Link>
+            </div>
           </div>
 
           <div className="flex items-center gap-3">
