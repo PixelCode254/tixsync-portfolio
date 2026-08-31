@@ -165,56 +165,23 @@ export function detectLanguage(text: string): LangCode {
   const charDetected = detectByCharRange(text);
   if (charDetected) return charDetected;
 
-  const wordPatterns: [LangCode, string[]][] = [
-    ["es", ["que", "como", "donde", "cuando", "porque", "para", "con", "este", "esta", "puedo", "quiero", "necesito", "habilidades", "proyectos", "cuanto"]],
-    ["fr", ["que", "comment", "pourquoi", "pour", "avec", "dans", "mais", "cette", "ceci", "je", "nous", "vous", "faire", "competences", "projets"]],
-    ["pt", ["que", "como", "onde", "porque", "para", "com", "mas", "esta", "isso", "eu", "nos", "voce", "posso", "habilidades", "projetos", "quanto"]],
-    ["de", ["wie", "was", "wo", "warum", "fur", "mit", "aber", "diese", "ich", "wir", "sie", "konnen", "mochten", "fahigkeiten", "projekte", "bitte"]],
-    ["it", ["che", "come", "dove", "perche", "per", "con", "senza", "ma", "questo", "io", "noi", "voi", "posso", "competenze", "progetti", "quanto"]],
-    ["nl", ["wat", "hoe", "waar", "waarom", "voor", "met", "maar", "deze", "ik", "wij", "jij", "kunnen", "vaardigheden", "projecten", "graag"]],
-    ["tr", ["ne", "nasil", "nerede", "neden", "icin", "ile", "ama", "bu", "ben", "biz", "siz", "yapabilirim", "beceriler", "projeler", "var"]],
-    ["sw", ["ndio", "hapana", "asante", "samahani", "tafadhali", "kwa nini", "je", "wapi", "nini", "vipi", "sawa", "nzuri"]],
-    ["yo", ["bawo ni", "o dabo", "o se", "mo wa", "ka lo", "pele", "mo fe"]],
-    ["ha", ["eh", "ina", "yaya", "to", "ba", "ko", "ka", "ai", "wa", "na", "ki", "zan"]],
-    ["ig", ["nna", "dina", "biko", "ebe", "nde", "oge", "oma", "nke", "aha", "kwesị"]],
-    ["zu", ["yebo", "cha", "lo", "ku", "ngi", "ye", "na", "le", "nge"]],
-    ["xh", ["ewe", "hayi", "ndiyazi", "ulo", "kule"]],
-    ["rw", ["yego", "oya", "murakoze", "amakuru"]],
-    ["so", ["haa", "maya", "mahadsanid", "waan ku waydiinayaa"]],
-    ["st", ["ewe", "hae", "ke", "ha", "le"]],
-    ["sn", ["hongu", "kana", "zvakanaka", "mhorii"]],
-    ["mg", ["enyso", "tsia", "misaotra", "afaka"]],
-    ["mi", ["ae", "kao", "kei", "ana", "kia", "mea"]],
-    ["sm", ["io", "leai", "faafetai", "fakamolemole"]],
-    ["to", ["io", "ikai", "fakaaue", "fakamolemole"]],
-    ["fj", ["io", "ni sa", "vinaka", "kerekere"]],
-    ["ny", ["yiye", "chabwino", "zikomo", "chonde"]],
-    ["wo", ["waaw", "deedet", "jerejef", "dinaa"]],
-    ["ff", ["ee", "waawal", "jerejef", "hare"]],
-    ["bm", ["awɔ", "ayi", "ware", "se", "wari"]],
-    ["lg", ["ye", "nnyo", "webale", "ookyeero"]],
-    ["rn", ["yego", "oya", "ariko", "ndakunda"]],
-    ["lo", ["mee pen", "bor baw", "khob jai", "kho jai"]],
-    ["km", ["bat", "jaa", "som", "suor", "khnhom"]],
-    ["bo", ["re", "min", "ju", "dzo", "yod"]],
-    ["dz", ["re", "min", "ju", "dzo"]],
-    ["ne", ["ho", "haina", "dhanyabad", "kripaya", "ma", "tapai", "cha"]],
-    ["si", ["owu", "naea", "sthuuthiya", "krnaya", "mama", "obar"]],
-    ["my", ["har", "nout", "kyayzu tinbar del", "kya dal", "shi", "shi te"]],
-    ["th", ["chai", "mai", "khob khun", "krub", "ka", "dai", "me", "pen"]],
-    ["vi", ["vang", "khong", "cam on", "xin", "toi", "ban", "duoc", "co", "la"]],
-    ["id", ["ya", "tidak", "terima kasih", "tolong", "saya", "kamu", "ada"]],
-    ["ms", ["ya", "tidak", "terima kasih", "tolong", "saya", "kamu", "ada"]],
-    ["tl", ["oo", "hindi", "salamat", "po", "ako", "ka", "may", "ito"]],
-    ["am", ["ey", "aydelem", "amesegenallen", "ebere", "ene", "new", "ye", "zelalem"]],
+  const wordPatterns: [LangCode, string[], number][] = [
+    ["sw", ["ndio", "hapana", "asante", "samahani", "tafadhali", "kwa nini", "je", "wapi", "nini", "vipi", "sawa", "nzuri", "kazi", "kujua", "kuhusu", "huduma", "bei", "jinsi", "kampuni", "wasiliana", "namna", "chochote", "yake", "wake", "kwenye", "hapa", "pia", "bado", "haraka", "karibu", "tafuta", "omba", "soma", "jua", "elewa", "fanya", "leta", "peleka", "ona", "sikia", "heshimu", "penda", "chagua", "anza", "maliza", "simama", "kaa", "tembea", "kila", "mara", "siku", "wiki", "mwezi", "mwaka", "sasa", "baada", "mbele", "nyuma", "juu", "chini", "ndani", "nje"], 2],
+    ["es", ["que", "como", "donde", "cuando", "porque", "para", "con", "este", "esta", "puedo", "quiero", "habilidades", "proyectos", "cuanto"], 2],
+    ["fr", ["que", "comment", "pourquoi", "pour", "avec", "dans", "mais", "cette", "ceci", "je", "nous", "vous", "faire", "competences", "projets"], 2],
+    ["pt", ["que", "como", "onde", "porque", "para", "com", "mas", "esta", "isso", "eu", "nos", "voce", "posso", "habilidades", "projetos", "quanto"], 2],
+    ["de", ["wie", "was", "wo", "warum", "fur", "mit", "aber", "diese", "ich", "wir", "sie", "konnen", "mochten", "fahigkeiten", "projekte", "bitte"], 2],
+    ["it", ["che", "come", "dove", "perche", "per", "con", "senza", "ma", "questo", "io", "noi", "voi", "posso", "competenze", "progetti", "quanto"], 2],
+    ["nl", ["wat", "hoe", "waar", "waarom", "voor", "met", "maar", "deze", "ik", "wij", "jij", "kunnen", "vaardigheden", "projecten", "graag"], 2],
+    ["tr", ["ne", "nasil", "nerede", "neden", "icin", "ile", "ama", "bu", "ben", "biz", "siz", "yapabilirim", "beceriler", "projeler", "var"], 2],
   ];
 
-  for (const [lang, words] of wordPatterns) {
+  for (const [lang, words, threshold] of wordPatterns) {
     let matchCount = 0;
     for (const word of words) {
       if (lower.includes(word)) matchCount++;
     }
-    if (matchCount >= 2) return lang;
+    if (matchCount >= threshold) return lang;
   }
   return "en";
 }
