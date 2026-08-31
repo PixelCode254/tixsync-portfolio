@@ -25,13 +25,13 @@ export function Hero() {
       <div className="section-container relative z-10 pt-32 pb-20">
         <motion.div variants={container} initial="hidden" animate="show" className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           {/* Profile Photo */}
-          <motion.div variants={item} className="relative shrink-0">
-            <div className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-2xl overflow-hidden border-2 border-cyber-500/30 shadow-2xl shadow-cyber-500/10">
+          <motion.div variants={item} className="relative shrink-0 -mt-8">
+            <div className="relative w-72 h-80 sm:w-80 sm:h-[22rem] lg:w-96 lg:h-[26rem] rounded-2xl overflow-hidden border-2 border-cyber-500/30 shadow-2xl shadow-cyber-500/10">
               <Image
                 src="/images/Profile.jpg"
                 alt="Cornelius Maina Nyaga"
                 fill
-                className="object-cover"
+                className="object-top"
                 priority
               />
             </div>
