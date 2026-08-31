@@ -3,6 +3,7 @@ import { Inter, Playfair_Display, JetBrains_Mono } from "next/font/google";
 import { Navbar } from "@/components/ui/navbar";
 import { MouseGlow } from "@/components/ui/mouse-glow";
 import { Analytics } from "@/components/ui/analytics";
+import { Chatbot } from "@/components/ui/chatbot";
 import "./globals.css";
 
 const inter = Inter({
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <Navbar />
         <main>{children}</main>
+        <Chatbot />
       </body>
     </html>
   );

@@ -18,6 +18,7 @@ type Project = {
   title: string;
   slug: string;
   description: string;
+  content: string;
   category: string;
   techStack: string[];
   imageUrl: string | null;
@@ -48,6 +49,7 @@ const emptyProject = {
   title: "",
   slug: "",
   description: "",
+  content: "",
   category: "FULL_STACK",
   techStack: [] as string[],
   imageUrl: "",
@@ -96,6 +98,7 @@ export default function AdminProjects() {
       title: p.title,
       slug: p.slug,
       description: p.description,
+      content: p.content || "",
       category: p.category,
       techStack: [...p.techStack],
       imageUrl: p.imageUrl || "",
@@ -242,6 +245,21 @@ export default function AdminProjects() {
                   rows={3}
                   className="w-full resize-none rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm text-white outline-none focus:border-cyber-600/50"
                   placeholder="Describe the project..."
+                />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-xs font-medium text-obsidian-400">
+                  Content
+                </label>
+                <textarea
+                  value={form.content}
+                  onChange={(e) =>
+                    setForm({ ...form, content: e.target.value })
+                  }
+                  rows={6}
+                  className="w-full resize-none rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 text-sm text-white outline-none focus:border-cyber-600/50"
+                  placeholder="Full project content (optional)..."
                 />
               </div>
 

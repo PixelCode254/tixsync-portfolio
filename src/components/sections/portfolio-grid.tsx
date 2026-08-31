@@ -84,42 +84,49 @@ export function PortfolioGrid() {
             return (
               <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: i * 0.1 }} className="group">
-                <div className="card-glow h-full hover:border-white/10 transition-all">
-                  <div className={`relative h-48 rounded-t-xl bg-gradient-to-br ${catColors[p.category] || "from-obsidian-700/50 to-obsidian-800/50"} flex items-center justify-center`}>
-                    <Icon className="h-10 w-10 text-white/30" />
-                    {p.featured && (
-                      <div className="absolute top-3 left-3">
-                        <span className="rounded-md bg-cyber-600/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Featured</span>
+                <Link href={`/portfolio/${p.slug}`} className="block h-full">
+                  <div className="card-glow h-full hover:border-white/10 transition-all">
+                    <div className={`relative h-48 rounded-t-xl bg-gradient-to-br ${catColors[p.category] || "from-obsidian-700/50 to-obsidian-800/50"} flex items-center justify-center`}>
+                      {p.imageUrl ? (
+                        <img src={p.imageUrl} alt={p.title} className="absolute inset-0 w-full h-full object-cover rounded-t-xl" />
+                      ) : (
+                        <Icon className="h-10 w-10 text-white/30" />
+                      )}
+                      {p.featured && (
+                        <div className="absolute top-3 left-3">
+                          <span className="rounded-md bg-cyber-600/90 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">Featured</span>
+                        </div>
+                      )}
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="rounded-md bg-cyber-600/10 border border-cyber-600/20 px-2.5 py-0.5 text-[11px] font-medium text-cyber-400">{catLabels[p.category]}</span>
                       </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="rounded-md bg-white/5 px-2 py-0.5 text-[10px] text-obsidian-400">{catLabels[p.category]}</span>
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyber-300 transition-colors">{p.title}</h3>
-                    <p className="text-sm text-obsidian-400 leading-relaxed line-clamp-3 mb-4">{p.description}</p>
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {p.techStack.slice(0, 4).map(t => (
-                        <span key={t} className="rounded-md bg-white/5 px-2 py-1 text-[11px] text-obsidian-400 font-mono">{t}</span>
-                      ))}
-                    </div>
-                    <div className="flex items-center gap-3">
-                      {p.liveUrl && (
-                        <a href={p.liveUrl} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-cyber-400 hover:text-cyber-300 transition-colors">
-                          <ExternalLink className="h-3.5 w-3.5" /> Live
-                        </a>
-                      )}
-                      {p.githubUrl && (
-                        <a href={p.githubUrl} target="_blank" rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-sm text-obsidian-400 hover:text-white transition-colors">
-                          Source
-                        </a>
-                      )}
+                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-cyber-300 transition-colors">{p.title}</h3>
+                      <p className="text-sm text-obsidian-400 leading-relaxed mb-3">{p.description.slice(0, 100)}{p.description.length > 100 ? "..." : ""}</p>
+                      <div className="flex flex-wrap gap-1.5 mb-4">
+                        {p.techStack.slice(0, 4).map(t => (
+                          <span key={t} className="rounded-md bg-white/5 px-2 py-1 text-[11px] text-obsidian-400 font-mono">{t}</span>
+                        ))}
+                        {p.techStack.length > 4 && (
+                          <span className="rounded-md bg-white/5 px-2 py-1 text-[11px] text-obsidian-500">+{p.techStack.length - 4}</span>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-3">
+                        {p.liveUrl && (
+                          <span className="flex items-center gap-1 text-sm text-cyber-400 hover:text-cyber-300 transition-colors">
+                            <ExternalLink className="h-3.5 w-3.5" /> Live
+                          </span>
+                        )}
+                        {p.githubUrl && (
+                          <span className="flex items-center gap-1 text-sm text-obsidian-400 hover:text-white transition-colors">
+                            Source
+                          </span>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             );
           })}

@@ -23,11 +23,11 @@ export function Footer() {
               { icon: Github, href: "https://github.com/PixelCode254", label: "GitHub" },
               { icon: Linkedin, href: "https://linkedin.com/in/corneliusmaina", label: "LinkedIn" },
               { icon: Twitter, href: "https://twitter.com/corneliusmaina", label: "Twitter" },
-              { icon: MessageCircle, href: "https://wa.me/254704440164", label: "WhatsApp" },
+              { icon: MessageCircle, href: "https://wa.me/254704440164?text=Hello%20TIXSYNC!%20I'd%20like%20to%20know%20more%20about%20your%20services.", label: "WhatsApp" },
               { icon: Mail, href: "mailto:tixsyncsolutions@gmail.com", label: "Email" },
             ].map(({ icon: Icon, href, label }) => (
               <a key={label} href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
-                className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 text-obsidian-500 transition-all hover:border-white/10 hover:text-white hover:bg-white/5">
+                className={`flex h-9 w-9 items-center justify-center rounded-lg border border-white/5 text-obsidian-500 transition-all hover:border-white/10 hover:text-white hover:bg-white/5 ${label === "WhatsApp" ? "hover:border-[#25D366]/30 hover:text-[#25D366]" : ""}`}>
                 <Icon className="h-4 w-4" />
               </a>
             ))}

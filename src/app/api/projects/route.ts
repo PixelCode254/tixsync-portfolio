@@ -9,7 +9,37 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get("category");
     const featured = searchParams.get("featured");
     const all = searchParams.get("all");
+    const slug = searchParams.get("slug");
     const limit = parseInt(searchParams.get("limit") || "50");
+
+    const selectFields = {
+      id: true,
+      title: true,
+      slug: true,
+      description: true,
+      content: true,
+      category: true,
+      techStack: true,
+      imageUrl: true,
+      liveUrl: true,
+      githubUrl: true,
+      featured: true,
+      published: true,
+      order: true,
+      createdAt: true,
+    };
+
+    // Slug lookup: return single project
+    if (slug) {
+      const project = await prisma.project.findUnique({
+        where: { slug },
+        select: selectFields,
+      });
+      if (!project) {
+        return NextResponse.json({ project: null }, { status: 404 });
+      }
+      return NextResponse.json({ project });
+    }
 
     const where: Record<string, unknown> = {};
 
@@ -29,21 +59,7 @@ export async function GET(request: NextRequest) {
       where,
       orderBy: { order: "asc" },
       take: limit,
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        description: true,
-        category: true,
-        techStack: true,
-        imageUrl: true,
-        liveUrl: true,
-        githubUrl: true,
-        featured: true,
-        published: true,
-        order: true,
-        createdAt: true,
-      },
+      select: selectFields,
     });
 
     return NextResponse.json({ projects });
@@ -61,7 +77,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { title, slug, description, category, techStack, imageUrl, videoUrl, liveUrl, githubUrl, featured, published, order } = body;
+    const { title, slug, description, content, category, techStack, imageUrl, videoUrl, liveUrl, githubUrl, featured, published, order } = body;
 
     if (!title || !slug || !description || !category) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -77,6 +93,7 @@ export async function POST(request: NextRequest) {
         title: title.trim(),
         slug: slug.trim(),
         description: description.trim(),
+        content: content || null,
         category,
         techStack: techStack || [],
         imageUrl: imageUrl || null,

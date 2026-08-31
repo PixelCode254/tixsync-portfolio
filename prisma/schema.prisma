@@ -27,6 +27,7 @@ model Project {
   title       String
   slug        String       @unique
   description String
+  content     String?
   category    ProjectCategory
   techStack   String[]
   imageUrl    String?
@@ -56,6 +57,7 @@ model ContactMessage {
   subject   String?
   message   String
   phone     String?
+  source    String   @default("form")
   read      Boolean  @default(false)
   archived  Boolean  @default(false)
   replied   Boolean  @default(false)
