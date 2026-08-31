@@ -78,7 +78,6 @@ const LANGGreetings: Record<string, string[]> = {
   mn: ["сайн байна уу"],
   ne: ["नमस्ते", "नमस्कार"],
   am: ["ሰላም", "እንኳን ደህና ነጋህ"],
-  sw: ["habari", "jambo"],
 };
 
 const KNOWN_LANGS = Object.keys(LANGGreetings);
