@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 
 function sanitizeHtml(html: string): string {
   return html
@@ -62,11 +63,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         </time>
 
         {post.coverImage && (
-          <img
-            src={post.coverImage}
-            alt={post.title}
-            className="w-full rounded-lg mb-8 object-cover max-h-96"
-          />
+          <div className="relative w-full h-64 sm:h-80 rounded-lg overflow-hidden mb-8">
+            <Image
+              src={post.coverImage}
+              alt={post.title}
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
         )}
 
         <div
