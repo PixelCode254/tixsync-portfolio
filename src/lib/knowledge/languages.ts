@@ -166,6 +166,13 @@ export function detectLanguage(text: string): LangCode {
   if (charDetected) return charDetected;
 
   const wordPatterns: [LangCode, string[]][] = [
+    ["es", ["que", "como", "donde", "cuando", "porque", "para", "con", "este", "esta", "puedo", "quiero", "necesito", "habilidades", "proyectos", "cuanto"]],
+    ["fr", ["que", "comment", "pourquoi", "pour", "avec", "dans", "mais", "cette", "ceci", "je", "nous", "vous", "faire", "competences", "projets"]],
+    ["pt", ["que", "como", "onde", "porque", "para", "com", "mas", "esta", "isso", "eu", "nos", "voce", "posso", "habilidades", "projetos", "quanto"]],
+    ["de", ["wie", "was", "wo", "warum", "fur", "mit", "aber", "diese", "ich", "wir", "sie", "konnen", "mochten", "fahigkeiten", "projekte", "bitte"]],
+    ["it", ["che", "come", "dove", "perche", "per", "con", "senza", "ma", "questo", "io", "noi", "voi", "posso", "competenze", "progetti", "quanto"]],
+    ["nl", ["wat", "hoe", "waar", "waarom", "voor", "met", "maar", "deze", "ik", "wij", "jij", "kunnen", "vaardigheden", "projecten", "graag"]],
+    ["tr", ["ne", "nasil", "nerede", "neden", "icin", "ile", "ama", "bu", "ben", "biz", "siz", "yapabilirim", "beceriler", "projeler", "var"]],
     ["sw", ["ndio", "hapana", "asante", "samahani", "tafadhali", "kwa nini", "je", "wapi", "nini", "vipi", "sawa", "nzuri"]],
     ["yo", ["bawo ni", "o dabo", "o se", "mo wa", "ka lo", "pele", "mo fe"]],
     ["ha", ["eh", "ina", "yaya", "to", "ba", "ko", "ka", "ai", "wa", "na", "ki", "zan"]],
